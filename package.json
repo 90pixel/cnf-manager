@@ -6,8 +6,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node ./build/index.js",
-    "build:start": "npm run build && npm run start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build:start": "npm run build && npm run copy-templates && npm run start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "copy-templates": "copyfiles -f src/templates/* build/templates"
   },
   "bin": {
     "cnf-manager": "build/index.js"
@@ -25,12 +26,13 @@
   },
   "dependencies": {
     "commander": "^8.3.0",
+    "fs-extra": "^10.0.0",
     "inquirer": "^8.2.0"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/inquirer": "^8.1.3",
     "@types/node": "^16.11.12",
-    "copyfiles": "^2.4.1",
     "typescript": "^4.5.2"
   }
 }

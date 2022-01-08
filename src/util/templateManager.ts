@@ -1,15 +1,16 @@
 import * as os from "os";
-import * as fs from "fs";
+import * as fs from "fs-extra";
 import * as path from "path"
 import {Answer} from "../interfaces/answer";
 import {Variable} from "../interfaces/variable";
 
 export class TemplateManager {
-    private readonly templateRootPath = path.join(os.homedir(), 'cnf-manager');
+    private readonly templateRootPath = path.join(os.homedir(), '.cnf-manager');
 
     init() {
+        const templateBuildPath = path.join(__dirname, '../templates')
         if (!fs.existsSync(this.templateRootPath)) {
-            fs.mkdirSync(this.templateRootPath);
+            fs.copySync(templateBuildPath, this.templateRootPath);
         }
     }
 
