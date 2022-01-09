@@ -4,11 +4,13 @@
   "description": "",
   "main": "src/index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-templates",
     "start": "node ./build/index.js",
-    "build:start": "npm run build && npm run copy-templates && npm run start",
+    "build:start": "npm run build && npm run start",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "copy-templates": "copyfiles -f src/templates/* build/templates"
+    "copy-templates": "copyfiles -f src/templates/* build/templates",
+    "prepublish": "npm run build",
+    "prepare": "npm run build"
   },
   "bin": {
     "cnf-manager": "build/index.js"
